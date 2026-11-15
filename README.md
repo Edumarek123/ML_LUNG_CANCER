@@ -2,54 +2,63 @@
 
 # Lung Cancer Survey Classification
 
-**An educational machine-learning experiment using Python and scikit-learn.**
+**An educational supervised-learning experiment using a public survey dataset.**
 
 ![Python](https://img.shields.io/badge/Python-3.x-3776AB?logo=python&logoColor=white)
-![scikit--learn](https://img.shields.io/badge/scikit--learn-ExtraTrees-F7931E?logo=scikitlearn&logoColor=white)
-![Status](https://img.shields.io/badge/status-educational%20experiment-lightgrey)
+![Model](https://img.shields.io/badge/model-Extra_Trees-F7931E)
+![Scope](https://img.shields.io/badge/scope-educational%20only-lightgrey)
 
 </div>
 
-> **Medical disclaimer:** This project is for educational purposes only. It is not a medical device, does not provide a diagnosis, and must never be used to make healthcare decisions.
+> [!WARNING]
+> **Not for medical use.** This project is a learning experiment, not a medical device or diagnostic system. Its output must not be used for screening, diagnosis, treatment, or healthcare decisions.
 
-## Overview
+## Contents
 
-This repository explores a supervised classification workflow using a lung-cancer survey dataset. The Python script uses pandas and scikit-learn to prepare data, train an Extra Trees classifier, and produce an example prediction.
+- [Project overview](#project-overview)
+- [How it works](#how-it-works)
+- [Dataset](#dataset)
+- [Quick start](#quick-start)
+- [Repository structure](#repository-structure)
+- [Evaluation and limitations](#evaluation-and-limitations)
+- [Reproducibility](#reproducibility)
+- [License](#license)
 
-The focus is the machine-learning workflow — not clinical validation.
+## Project overview
+
+This repository demonstrates a compact classification workflow with Python, pandas, and scikit-learn. It loads a lung-cancer survey dataset, converts the gender field to a numeric representation, separates features from the target, trains an `ExtraTreesClassifier`, and evaluates an example patient record.
+
+The goal is to practice a complete machine-learning flow — from tabular data to model inference — while understanding the limitations of small public datasets.
+
+## How it works
+
+```mermaid
+flowchart TD
+    A[Survey CSV] --> B[Load with pandas]
+    B --> C[Encode GENDER]
+    C --> D[Separate features and target]
+    D --> E[70/30 train-test split]
+    E --> F[Train ExtraTreesClassifier]
+    F --> G[Calculate test score]
+    F --> H[Predict example record]
+```
+
+The current script uses a 30% test split and calls the classifier's `score()` method. The score is not currently printed or saved as a report.
 
 ## Dataset
 
-The repository includes:
+The repository includes [survey_lung_cancer.csv](survey_lung_cancer.csv). The script's original comment attributes the dataset to the [Kaggle Lung Cancer Detection dataset](https://www.kaggle.com/datasets/jillanisofttech/lung-cancer-detection).
 
-- `survey_lung_cancer.csv` — survey dataset used by the experiment
+Review the dataset's provenance, field definitions, and terms before using it in another context.
 
-Before using the data, review its columns, target definition, origin, and any applicable usage terms.
-
-## Machine-learning workflow
-
-1. Load the CSV dataset.
-2. Inspect and prepare the feature data.
-3. Separate model inputs and target labels.
-4. Split data into training and testing subsets.
-5. Fit an `ExtraTreesClassifier`.
-6. Run an example inference.
-
-## Technology stack
-
-- Python
-- pandas
-- scikit-learn
-- Extra Trees ensemble classifier
-
-## Getting started
+## Quick start
 
 ### Requirements
 
 - Python 3
 - pip
 
-### Install dependencies
+### Install
 
 ```bash
 git clone https://github.com/Edumarek123/ML_LUNG_CANCER.git
@@ -63,25 +72,27 @@ python3 -m pip install pandas scikit-learn
 python3 lung_cancer.py
 ```
 
-Run the script from the repository root so the relative dataset path resolves as expected.
+Run the script from the repository root so the relative CSV path resolves correctly.
 
-## Repository layout
+## Repository structure
 
 ```text
-.
+ML_LUNG_CANCER/
 ├── lung_cancer.py
 ├── survey_lung_cancer.csv
 └── README.md
 ```
 
-## Limitations
+## Evaluation and limitations
 
-Survey data and a simple train/test workflow do not establish clinical reliability. Dataset bias, class balance, data leakage, feature quality, and external validation all affect model behavior. No clinical performance claim is made here.
+This repository should be treated as an introductory experiment, not a clinically meaningful model. The current implementation does not establish external validity, calibration, fairness, clinical utility, or generalization to a real patient population.
 
-## Project status
+For a stronger experiment, consider documenting class balance, preprocessing decisions, a fixed random seed, confusion matrix, precision, recall, F1-score, and validation on an independent dataset.
 
-Educational machine-learning experiment.
+## Reproducibility
+
+The current train/test split and model are created without an explicit random seed. Results may therefore vary between runs. Record the dataset version and experiment settings when comparing results.
 
 ## License
 
-No license file was identified in the repository at the time of writing. Contact the author before redistributing or reusing the project.
+No `LICENSE` file is currently included. Unless a license is added, reuse and redistribution permissions are not granted by this repository.
